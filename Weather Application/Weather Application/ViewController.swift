@@ -8,7 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    private let customView = UIView(frame: .zero)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -17,11 +19,19 @@ class ViewController: UIViewController {
     }
     private func setupView() {
         view.backgroundColor = UIColor.blue
-        let customView = UIView(frame: .zero)
+        
         customView.backgroundColor = .black
         customView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(customView)
         
+        setHierarch()
+        setContraint()
+        
+
+    }
+    private func setHierarch() {
+        view.addSubview(customView)
+    }
+    private func setContraint() {
         NSLayoutConstraint.activate([
             customView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
             customView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
