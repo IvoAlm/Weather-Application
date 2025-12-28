@@ -9,7 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let customView = UIView(frame: .zero)
+    private lazy var  customView:  UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .black
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,15 +25,10 @@ class ViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = UIColor.blue
         
-        customView.backgroundColor = .black
-        customView.translatesAutoresizingMaskIntoConstraints = false
-        
-        setHierarch()
+        setHierarchy()
         setContraint()
-        
-
     }
-    private func setHierarch() {
+    private func setHierarchy() {
         view.addSubview(customView)
     }
     private func setContraint() {
