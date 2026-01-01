@@ -10,18 +10,27 @@ import UIKit
 class ViewController: UIViewController {
     
     private lazy var  backgroundView:  UIImageView = {
-        let imageView = UIImageView(frame: .zero)
+        let imageView = UIImageView() //  por padrao ele já considera como frama: .zero
         imageView.image = UIImage(named: "background")
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     private lazy var headerView: UIView = {
-        let  header = UIView(frame: .zero)
+        let  header = UIView()
         header.backgroundColor = .white
         header.layer.cornerRadius = 20
         header.translatesAutoresizingMaskIntoConstraints = false
         return header
+    }()
+    private lazy var citylabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.text = "São Paulo"
+        label.textAlignment = .center
+        label.textColor = UIColor(named: "primaryColor")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     override func viewDidLoad() {
@@ -40,6 +49,8 @@ class ViewController: UIViewController {
     private func setHierarchy() {
         view.addSubview(backgroundView)
         view.addSubview(headerView)
+        
+        headerView.addSubview(citylabel)
     }
     private func setContraint() {
         NSLayoutConstraint.activate([
@@ -55,6 +66,11 @@ class ViewController: UIViewController {
             headerView.heightAnchor.constraint(equalToConstant: 169)
         
             
+        ])
+        NSLayoutConstraint.activate([
+            citylabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 15),
+            citylabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
+            citylabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15)
         ])
     }
 
