@@ -23,11 +23,20 @@ class ViewController: UIViewController {
         header.translatesAutoresizingMaskIntoConstraints = false
         return header
     }()
-    private lazy var citylabel: UILabel = {
+    private lazy var cityLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.text = "São Paulo"
         label.textAlignment = .center
+        label.textColor = UIColor(named: "primaryColor")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    private lazy var temperatureLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 70, weight: .bold)
+        label.text = "25 °C"
+        label.textAlignment = .left
         label.textColor = UIColor(named: "primaryColor")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -50,7 +59,8 @@ class ViewController: UIViewController {
         view.addSubview(backgroundView)
         view.addSubview(headerView)
         
-        headerView.addSubview(citylabel)
+        headerView.addSubview(cityLabel)
+        headerView.addSubview(temperatureLabel)
     }
     private func setContraint() {
         NSLayoutConstraint.activate([
@@ -68,9 +78,11 @@ class ViewController: UIViewController {
             
         ])
         NSLayoutConstraint.activate([
-            citylabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 15),
-            citylabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
-            citylabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15)
+            cityLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 15),
+            cityLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
+            cityLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15),
+            temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 21),
+            temperatureLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 	26)
         ])
     }
 
