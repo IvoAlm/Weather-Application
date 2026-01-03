@@ -41,6 +41,13 @@ class ViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    private lazy var weatherIcon: UIImageView = {
+        let imagemView = UIImageView()
+        imagemView.image = UIImage(named: "sunIcon")
+        imagemView.translatesAutoresizingMaskIntoConstraints = false
+        imagemView.contentMode = .scaleAspectFit
+        return imagemView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +68,7 @@ class ViewController: UIViewController {
         
         headerView.addSubview(cityLabel)
         headerView.addSubview(temperatureLabel)
+        headerView.addSubview(weatherIcon)
     }
     private func setContraint() {
         NSLayoutConstraint.activate([
@@ -81,8 +89,14 @@ class ViewController: UIViewController {
             cityLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 15),
             cityLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 15),
             cityLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -15),
+            cityLabel.heightAnchor.constraint(equalToConstant: 20),
             temperatureLabel.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 21),
-            temperatureLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 	26)
+            temperatureLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 	26),
+            weatherIcon.heightAnchor.constraint(equalToConstant: 86),
+            weatherIcon.widthAnchor.constraint(equalToConstant: 86),
+            weatherIcon.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -18),
+            weatherIcon.centerYAnchor.constraint(equalTo: temperatureLabel.centerYAnchor),
+            weatherIcon.leadingAnchor.constraint(equalTo: temperatureLabel.trailingAnchor, constant: 8)
         ])
     }
 
